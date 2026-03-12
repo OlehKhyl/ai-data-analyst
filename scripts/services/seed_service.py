@@ -1,9 +1,9 @@
 from sqlalchemy import delete
 from database.models import User, Product, Order
 from database.db import SessionLocal
-from scripts.generators.users import generate_user, generate_users
-from scripts.generators.products import generate_product, generate_products
-from scripts.generators.orders import generate_order, generate_orders
+from scripts.generators.users import generate_users
+from scripts.generators.products import generate_products
+from scripts.generators.orders import generate_orders
 
 def clear_data(db):
     db.execute(delete(Order))
