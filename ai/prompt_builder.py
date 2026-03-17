@@ -13,11 +13,15 @@ def build_prompt_for_analytical_sql(user_query: str) -> str:
             - Never use SELECT *, always specify columns explicitly
             - Prefer aggregations (COUNT, SUM, AVG)
             - Return summarized data
-            - Use LIMIT when returning lists"""
+            - Use LIMIT when returning lists
+            - Generate ONLY ONE SQL query
+            - Do NOT generate multiple statements Use subqueries or CTE (WITH) if needed
+            - Do NOT use semicolons to separate queries
+            - Use only SELECT statements, do not use any other SQL commands (e.g., UPDATE, DELETE, INSERT, DROP, ALTER)
+            - End the SQL query with a semicolon"""
 
     prompt += f"\n\nUser Query: {user_query}\n\n"
     prompt += """Generate a SQL query that answers the user's question based on the provided database schema. 
-                 Ensure the query follows the rules outlined above. 
-                 Return only the SQL query without any explanations or additional text."""
+                 Ensure the query follows the rules outlined above. """
 
     return prompt

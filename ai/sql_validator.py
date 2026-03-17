@@ -31,6 +31,9 @@ def validate_sql_query(query: str) -> str:
     if re.search(r'\bSELECT\s+\*', upper_query):
         raise ValueError("The generated SQL query should not use SELECT *; please specify the columns explicitly.")
 
+    if upper_query.count(";") > 1:
+        raise ValueError("The generated SQL query shouldn't contain multiple statements. Use subqueries or CTEs if needed.")
+
     if not any(func in upper_query for func in AGGREGATE_FUNCTIONS) and not "LIMIT" in upper_query:
         raise ValueError("The generated SQL query should include a aggregate function or LIMIT clause to prevent excessive data retrieval.")
 
