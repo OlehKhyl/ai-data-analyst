@@ -60,3 +60,13 @@ def get_schema_prompt():
         prompt += "\n"
 
     return prompt
+
+
+def get_all_tables_names():
+    return list(DATABASE_SCHEMA.keys())
+
+def get_all_columns_names():
+    columns = []
+    for table_name, table_info in DATABASE_SCHEMA.items():
+        columns.extend(list(table_info["columns"].keys()))
+    return columns
